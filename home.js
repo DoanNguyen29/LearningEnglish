@@ -87,7 +87,21 @@ const ImportSetModal = ({ onClose, onImport }) => {
   );
 };
 
-const HomeScreen = ({ sets, onSelect, onCreate, onDelete, currentUser, onLogout, onImportSet, onManageUsers, onExport }) => {
+const SyncBadge = ({ status }) => {
+  if (!status) return null;
+  const map = {
+    loading: { text: 'Đang tải...', cls: 'bg-blue-100 text-blue-600' },
+    pending: { text: 'Chờ lưu...', cls: 'bg-yellow-100 text-yellow-700' },
+    saving:  { text: '⏳ Đang lưu', cls: 'bg-yellow-100 text-yellow-700' },
+    saved:   { text: '✓ Đã đồng bộ', cls: 'bg-green-100 text-green-700' },
+    error:   { text: '✗ Lưu thất bại', cls: 'bg-red-100 text-red-600' },
+  };
+  const s = map[status];
+  if (!s) return null;
+  return <span className={`text-xs font-semibold px-2 py-1 rounded-lg ${s.cls}`}>{s.text}</span>;
+};
+
+const HomeScreen = ({ sets, onSelect, onCreate, onDelete, currentUser, onLogout, onImportSet, onManageUsers, onExport, onExportProgress, onImportProgress, syncStatus }) => {
   const [q, setQ] = useState('');
   const [showImportSet, setShowImportSet] = useState(false);
   const now = Date.now();
@@ -120,6 +134,7 @@ const HomeScreen = ({ sets, onSelect, onCreate, onDelete, currentUser, onLogout,
           )}
           {/* ------------------- */}
 
+          {currentUser !== 'admin' && <SyncBadge status={syncStatus}/>}
           <button onClick={onLogout} className="bg-gray-100 text-gray-600 px-3 py-2 rounded-xl text-sm font-semibold">Đăng xuất</button>
         </div>
       } />

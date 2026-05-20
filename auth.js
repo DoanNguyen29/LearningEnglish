@@ -1,45 +1,108 @@
-const { useState } = React;
+const { useState, useEffect } = React;
 const { Btn } = window.UI;
-const { SAMPLE } = window.SRS;
 
-const USERS_KEY = 'flashlearn_users';
 const CURRENT_USER_KEY = 'flashlearn_current_user';
-const DATA_PREFIX = 'flashlearn_v3__';
+const DATA_PREFIX      = 'flashlearn_v3__';
 
-const loadUsers = () => { try { const d = localStorage.getItem(USERS_KEY); return d ? JSON.parse(d) : []; } catch { return []; } };
-const saveUsers = (u) => { try { localStorage.setItem(USERS_KEY, JSON.stringify(u)); } catch {} };
 const loadCurrentUser = () => { try { return localStorage.getItem(CURRENT_USER_KEY); } catch { return null; } };
 const saveCurrentUser = (user) => { try { if (user) localStorage.setItem(CURRENT_USER_KEY, user); else localStorage.removeItem(CURRENT_USER_KEY); } catch {} };
-const loadData = (user) => { if (!user) return null; try { const d = localStorage.getItem(DATA_PREFIX + user); return d ? JSON.parse(d) : null; } catch { return null; } };
-const saveData = (user, d) => { if (!user) return; try { localStorage.setItem(DATA_PREFIX + user, JSON.stringify(d)); } catch {} };
+const loadData  = (user) => { if (!user) return null; try { const d = localStorage.getItem(DATA_PREFIX + user); return d ? JSON.parse(d) : null; } catch { return null; } };
+const saveData  = (user, d) => { if (!user) return; try { localStorage.setItem(DATA_PREFIX + user, JSON.stringify(d)); } catch {} };
 
 const AuthScreen = ({ onLoginSuccess }) => {
-  // Chỉ cho phép tạo tài khoản khi chưa có user nào (lần đầu cài đặt)
-  const isFirstRun = loadUsers().length === 0;
-  const [isLogin, setIsLogin] = useState(!isFirstRun);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [status, setStatus]       = useState('loading'); // loading | ready | error
+  const [statusMsg, setStatusMsg] = useState('');
+  const [users, setUsers]         = useState([]);
+  const [usersSha, setUsersSha]   = useState(null);
+  const [username, setUsername]   = useState('');
+  const [password, setPassword]   = useState('');
+  const [error, setError]         = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  // Tải danh sách tài khoản từ GitHub khi mở app
+  useEffect(() => {
+    (async () => {
+      const result = await window.GitHub.getUsers();
+      if (result.error === 'token_invalid') {
+        setStatus('error');
+        setStatusMsg('Token GitHub không hợp lệ hoặc đã hết hạn. Vui lòng cập nhật token trong github.js.');
+        return;
+      }
+      if (result.error === 'network_error') {
+        setStatus('error');
+        setStatusMsg('Không thể kết nối đến GitHub. Kiểm tra kết nối mạng và thử lại.');
+        return;
+      }
+      if (result.error) {
+        setStatus('error');
+        setStatusMsg(`Lỗi khi tải dữ liệu: ${result.error}`);
+        return;
+      }
+      const loaded = result.users || [];
+      setUsers(loaded);
+      setUsersSha(result.sha);
+      // Cache lại localStorage để fallback khi mất mạng
+      if (loaded.length > 0) localStorage.setItem('flashlearn_users', JSON.stringify(loaded));
+      setStatus('ready');
+    })();
+  }, []);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSubmitting(true);
     const uTrim = username.trim();
     const pTrim = password.trim();
-    if (!uTrim || !pTrim) { setError('Vui lòng điền đầy đủ thông tin'); return; }
+    if (!uTrim || !pTrim) { setError('Vui lòng điền đầy đủ thông tin'); setSubmitting(false); return; }
 
-    const users = loadUsers();
-    if (isLogin) {
+    const isFirstRun = users.length === 0;
+
+    if (!isFirstRun) {
+      // Đăng nhập
       const found = users.find(x => x.username.toLowerCase() === uTrim.toLowerCase() && x.password === pTrim);
       if (found) { onLoginSuccess(found.username); }
       else { setError('Sai tên đăng nhập hoặc mật khẩu'); }
     } else {
-      // Chỉ chạy nhánh này khi isFirstRun (chưa có user nào)
-      users.push({ username: uTrim, password: pTrim });
-      saveUsers(users);
-      onLoginSuccess(uTrim);
+      // Lần đầu: tạo tài khoản admin, lưu lên GitHub
+      const newUsers = [{ username: uTrim, password: pTrim }];
+      const newSha = await window.GitHub.saveUsers(newUsers, usersSha);
+      if (newSha !== null) {
+        localStorage.setItem('flashlearn_users', JSON.stringify(newUsers));
+        onLoginSuccess(uTrim);
+      } else {
+        setError('Không thể lưu tài khoản. Kiểm tra kết nối mạng và thử lại.');
+      }
     }
+    setSubmitting(false);
   };
+
+  if (status === 'loading') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-indigo-100">
+        <div className="text-center">
+          <div className="text-4xl mb-3">🚀</div>
+          <p className="text-gray-500 font-medium">Đang kết nối...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (status === 'error') {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-b from-blue-50 to-indigo-100">
+        <div className="bg-white w-full max-w-md rounded-3xl p-8 shadow-xl border border-gray-100/50 pop-in text-center">
+          <div className="text-4xl mb-3">⚠️</div>
+          <h2 className="text-lg font-bold text-gray-800 mb-2">Không thể tải dữ liệu</h2>
+          <p className="text-sm text-red-600 bg-red-50 rounded-xl p-3 border border-red-100">{statusMsg}</p>
+          <button onClick={() => window.location.reload()} className="mt-6 px-6 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-xl hover:bg-blue-700">
+            Thử lại
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const isFirstRun = users.length === 0;
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-b from-blue-50 to-indigo-100">
@@ -65,7 +128,9 @@ const AuthScreen = ({ onLoginSuccess }) => {
             <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none" placeholder="Password..."/>
           </div>
           <div className="mt-2">
-            <Btn full type="submit" color="blue">{isLogin ? 'Đăng nhập' : 'Tạo tài khoản Admin'}</Btn>
+            <Btn full type="submit" color="blue" disabled={submitting}>
+              {submitting ? 'Đang xử lý...' : (isFirstRun ? 'Tạo tài khoản Admin' : 'Đăng nhập')}
+            </Btn>
           </div>
         </form>
       </div>
@@ -73,4 +138,4 @@ const AuthScreen = ({ onLoginSuccess }) => {
   );
 };
 
-window.Auth = { AuthScreen, loadCurrentUser, saveCurrentUser, loadData, saveData, loadUsers, saveUsers };
+window.Auth = { AuthScreen, loadCurrentUser, saveCurrentUser, loadData, saveData };
