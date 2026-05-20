@@ -1,0 +1,19 @@
+[
+  {
+    "id": "set1",
+    "name": "Từ vựng cốt lõi",
+    "description": "Các từ thông dụng căn bản hữu ích nhất",
+    "cards": [
+      { "id": "c01", "front": "Apple",    "back": "Quả táo",         "example": "I eat an apple every morning.",     "known": false, "correct": 0, "incorrect": 0 },
+      { "id": "c02", "front": "Book",     "back": "Quyển sách",      "example": "She is reading a good book.",       "known": false, "correct": 0, "incorrect": 0 },
+      { "id": "c03", "front": "Computer", "back": "Máy tính",        "example": "I work on my computer all day.",    "known": false, "correct": 0, "incorrect": 0 },
+      { "id": "c04", "front": "Dog",      "back": "Con chó",         "example": "The dog is very friendly.",         "known": false, "correct": 0, "incorrect": 0 },
+      { "id": "c05", "front": "Elephant", "back": "Con voi",         "example": "An elephant never forgets.",        "known": false, "correct": 0, "incorrect": 0 },
+      { "id": "c06", "front": "Flower",   "back": "Bông hoa",        "example": "The flower smells wonderful.",      "known": false, "correct": 0, "incorrect": 0 },
+      { "id": "c07", "front": "Garden",   "back": "Khu vườn",        "example": "We have a beautiful garden.",       "known": false, "correct": 0, "incorrect": 0 },
+      { "id": "c08", "front": "House",    "back": "Ngôi nhà",        "example": "They live in a big house.",         "known": false, "correct": 0, "incorrect": 0 },
+      { "id": "c09", "front": "Island",   "back": "Hòn đảo",         "example": "The island is surrounded by sea.", "known": false, "correct": 0, "incorrect": 0 },
+      { "id": "c10", "front": "Journey",  "back": "Cuộc hành trình", "example": "Life is a long journey.",           "known": false, "correct": 0, "incorrect": 0 }
+    ]
+  }
+]
