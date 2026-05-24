@@ -3,6 +3,15 @@
   "progress": {
     "md015": {
       "known": true
+    },
+    "md001": {
+      "known": false
+    },
+    "md008": {
+      "known": true
+    },
+    "md018": {
+      "known": true
     }
   }
 }
