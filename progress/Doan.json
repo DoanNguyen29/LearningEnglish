@@ -12,6 +12,12 @@
     },
     "md018": {
       "known": true
+    },
+    "md027": {
+      "known": true
+    },
+    "md014": {
+      "known": false
     }
   }
 }
