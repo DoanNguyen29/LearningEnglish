@@ -1,7 +1,10 @@
 const { loadCurrentUser, saveCurrentUser, loadData, saveData, AuthScreen } = window.Auth;
-const { HomeScreen } = window;
+const { HomeScreen, DashboardScreen } = window;
 const { SetDetail } = window;
 const { LearnStudy, FlashcardStudy, QuizStudy, WriteStudy } = window.Study;
+const { GrammarListScreen, TenseDetailScreen } = window.Grammar;
+const { PodcastScreen } = window.Podcast;
+const { TestHomeScreen } = window.TestModule;
 const { uid } = window.SRS;
 
 const { useState, useEffect } = React;
@@ -158,8 +161,10 @@ const App = () => {
   const [systemSets, setSystemSets] = useState(null);
   const [syncStatus, setSyncStatus] = useState('');
 
-  const [screen, setScreen] = useState('home');
+  const [screen, setScreen] = useState('dashboard');
   const [setId, setSetId] = useState(null);
+  const [tenseId, setTenseId] = useState(null);
+  const [studyReturn, setStudyReturn] = useState('set-detail');
   const [editCard, setEditCard] = useState(undefined);
   const [showUserMgmt, setShowUserMgmt] = useState(false);
 
@@ -179,6 +184,12 @@ const App = () => {
         setSystemSets(cached ? JSON.parse(cached) : window.SRS.SAMPLE.sets);
       });
   }, []);
+
+  // Admin luôn load kho từ vựng từ database.json (systemSets) khi file được fetch xong
+  useEffect(() => {
+    if (currentUser !== 'admin' || !systemSets || systemSets.length === 0) return;
+    setUserData(prev => ({ ...prev, customSets: systemSets }));
+  }, [systemSets, currentUser]);
 
   // Tự động lưu tiến trình lên GitHub sau mỗi lần userData thay đổi (debounce 4s)
   useEffect(() => {
@@ -290,8 +301,8 @@ const App = () => {
     }
   }, [userData, currentUser, systemSets]);
 
-  const handleLoginSuccess = (username) => { saveCurrentUser(username); setCurrentUser(username); setScreen('home'); };
-  const handleLogout = () => { saveCurrentUser(null); setCurrentUser(null); setScreen('home'); };
+  const handleLoginSuccess = (username) => { saveCurrentUser(username); setCurrentUser(username); setScreen('dashboard'); };
+  const handleLogout = () => { saveCurrentUser(null); setCurrentUser(null); setScreen('dashboard'); };
 
   const addSet = () => {
     if (currentUser !== 'admin') {
@@ -400,26 +411,40 @@ const App = () => {
   if (!currentUser) return <AuthScreen onLoginSuccess={handleLoginSuccess}/>;
   const set = displaySets.find(s => s.id === setId);
 
-  if (screen === 'learn' && set) return <LearnStudy set={set} onBack={() => setScreen('set-detail')} onUpdateCard={updateCardStatus}/>;
-  if (screen === 'flashcard' && set) return <FlashcardStudy set={set} onBack={() => setScreen('set-detail')} onUpdateCard={updateCardStatus}/>;
-  if (screen === 'quiz' && set) return <QuizStudy set={set} onBack={() => setScreen('set-detail')} onUpdateCard={updateCardStatus}/>;
-  if (screen === 'write' && set) return <WriteStudy set={set} onBack={() => setScreen('set-detail')} onUpdateCard={updateCardStatus}/>;
+  // Study screens
+  if (screen === 'learn' && set) return <LearnStudy set={set} onBack={() => setScreen(studyReturn)} onUpdateCard={updateCardStatus}/>;
+  if (screen === 'flashcard' && set) return <FlashcardStudy set={set} onBack={() => setScreen(studyReturn)} onUpdateCard={updateCardStatus}/>;
+  if (screen === 'quiz' && set) return <QuizStudy set={set} onBack={() => setScreen(studyReturn)} onUpdateCard={updateCardStatus}/>;
+  if (screen === 'write' && set) return <WriteStudy set={set} onBack={() => setScreen(studyReturn)} onUpdateCard={updateCardStatus}/>;
 
   if (screen === 'set-detail' && set) return (
     <>
-      <SetDetail set={set} onBack={() => setScreen('home')} onStudy={m => setScreen(m)}
+      <SetDetail set={set} onBack={() => setScreen('vocabulary')} onStudy={m => { setStudyReturn('set-detail'); setScreen(m); }}
         onAddCard={() => setEditCard(null)} onEditCard={c => setEditCard(c)}
         onDeleteCard={deleteCard} onImportCards={importCards} isAdmin={isAdmin}/>
       {editCard !== undefined && <CardModal card={editCard} onClose={() => setEditCard(undefined)} onSave={saveCard}/>}
     </>
   );
 
-  return (
+  // Module screens
+  if (screen === 'vocabulary') return (
     <div className="max-w-2xl mx-auto">
-      <HomeScreen sets={displaySets} onSelect={id => { setSetId(id); setScreen('set-detail'); }} onCreate={addSet} onDelete={deleteSet} currentUser={currentUser} onLogout={handleLogout} onImportSet={importSetFromExcel} onManageUsers={() => setShowUserMgmt(true)} onExport={exportDatabase} onExportProgress={exportProgress} onImportProgress={importProgress} syncStatus={syncStatus}/>
+      <HomeScreen
+        sets={displaySets}
+        onSelect={id => { setSetId(id); setScreen('set-detail'); }}
+        onCreate={addSet}
+        onDelete={deleteSet}
+        currentUser={currentUser}
+        onLogout={handleLogout}
+        onImportSet={importSetFromExcel}
+        onManageUsers={() => setShowUserMgmt(true)}
+        onExport={exportDatabase}
+        onExportProgress={exportProgress}
+        onImportProgress={importProgress}
+        syncStatus={syncStatus}
+        onBack={() => setScreen('dashboard')}
+      />
       {showUserMgmt && <UserManagementModal onClose={() => setShowUserMgmt(false)}/>}
-      
-      {/* THỐNG KÊ HỌC VIÊN DÀNH RIÊNG CHO TÀI KHOẢN ADMIN */}
       {isAdmin && userListProgress.length > 0 && (
         <div className="mt-8 px-4 py-5 bg-white rounded-2xl shadow-sm border border-gray-100 mb-10">
           <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">📊 Báo cáo tiến độ học viên</h3>
@@ -439,6 +464,44 @@ const App = () => {
         </div>
       )}
     </div>
+  );
+
+  if (screen === 'grammar') return (
+    <GrammarListScreen onBack={() => setScreen('dashboard')} onSelectTense={id => { setTenseId(id); setScreen('tense-detail'); }} />
+  );
+
+  if (screen === 'tense-detail' && tenseId) return (
+    <TenseDetailScreen tenseId={tenseId} onBack={() => setScreen('grammar')} />
+  );
+
+  if (screen === 'podcast') return (
+    <PodcastScreen onBack={() => setScreen('dashboard')} />
+  );
+
+  if (screen === 'test') return (
+    <TestHomeScreen
+      onBack={() => setScreen('dashboard')}
+      displaySets={displaySets}
+      onStartVocabTest={id => { setSetId(id); setStudyReturn('test'); setScreen('quiz'); }}
+    />
+  );
+
+  // Dashboard (default)
+  return (
+    <>
+      <DashboardScreen
+        currentUser={currentUser}
+        onLogout={handleLogout}
+        onNavigate={mod => setScreen(mod)}
+        syncStatus={syncStatus}
+        onManageUsers={() => setShowUserMgmt(true)}
+        onExport={exportDatabase}
+        onImportSet={importSetFromExcel}
+        onCreate={addSet}
+        displaySets={displaySets}
+      />
+      {showUserMgmt && <UserManagementModal onClose={() => setShowUserMgmt(false)}/>}
+    </>
   );
 };
 

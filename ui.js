@@ -66,5 +66,33 @@ const SpeakBtn = ({ text, lang = 'en-US' }) => {
   );
 };
 
+const _GC = {
+  'blue-400':'#60a5fa','blue-500':'#3b82f6','blue-600':'#2563eb','blue-700':'#1d4ed8','blue-800':'#1e40af','blue-900':'#1e3a8a',
+  'indigo-500':'#6366f1','indigo-600':'#4f46e5','indigo-700':'#4338ca',
+  'cyan-500':'#06b6d4','cyan-600':'#0891b2','cyan-700':'#0e7490',
+  'sky-500':'#0ea5e9','sky-600':'#0284c7','sky-700':'#0369a1',
+  'teal-500':'#14b8a6','teal-600':'#0d9488','teal-700':'#0f766e','teal-800':'#115e59',
+  'emerald-500':'#10b981','emerald-600':'#059669','emerald-700':'#047857','emerald-800':'#065f46',
+  'green-500':'#22c55e','green-600':'#16a34a','green-700':'#15803d','green-800':'#166534',
+  'lime-600':'#65a30d','lime-700':'#4d7c0f','lime-800':'#3f6212',
+  'amber-500':'#f59e0b','amber-600':'#d97706','amber-700':'#b45309','amber-800':'#92400e',
+  'orange-400':'#fb923c','orange-500':'#f97316','orange-600':'#ea580c','orange-700':'#c2410c',
+  'red-500':'#ef4444','red-600':'#dc2626','red-700':'#b91c1c','red-800':'#991b1b','red-900':'#7f1d1d',
+  'rose-500':'#f43f5e','rose-600':'#e11d48','rose-700':'#be123c',
+  'pink-400':'#f472b6','pink-500':'#ec4899','pink-600':'#db2777',
+  'purple-500':'#a855f7','purple-600':'#9333ea','purple-700':'#7e22ce',
+  'violet-500':'#8b5cf6','violet-600':'#7c3aed','violet-700':'#6d28d9',
+  'fuchsia-500':'#d946ef','fuchsia-600':'#c026d3',
+  'gray-700':'#374151','gray-800':'#1f2937','gray-900':'#111827',
+  'slate-600':'#475569','slate-700':'#334155','slate-800':'#1e293b',
+  'stone-600':'#57534e','stone-700':'#44403c','stone-800':'#292524',
+  'neutral-700':'#404040','neutral-800':'#262626',
+};
+const gradientStyle = (cls, dir = '135deg') => {
+  const m = (cls || '').match(/from-(\S+)\s+to-(\S+)/);
+  if (!m) return {};
+  return { background: `linear-gradient(${dir}, ${_GC[m[1]] || '#6366f1'}, ${_GC[m[2]] || '#4338ca'})` };
+};
+
 // Đăng ký vào không gian toàn cục window để module khác sử dụng
-window.UI = { Bar, NavBar, Btn, SpeakBtn };
+window.UI = { Bar, NavBar, Btn, SpeakBtn, gradientStyle };

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls \"c:\\\\Users\\\\dn296\\\\OneDrive\\\\NTS\\\\CLAUDE\\\\trade\\\\English\\\\LearningEnglish-main\\\\LearningEnglish-main\\\\\" --Name)",
+      "Read(//c/Users/dn296/OneDrive/NTS/CLAUDE/trade/English/LearningEnglish-main/**)"
+    ]
+  }
+}

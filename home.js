@@ -1,5 +1,5 @@
 const { useState } = React;
-const { NavBar, Bar } = window.UI;
+const { NavBar, Bar, gradientStyle } = window.UI;
 
 const ImportSetModal = ({ onClose, onImport }) => {
   const [name, setName] = useState('');
@@ -101,7 +101,7 @@ const SyncBadge = ({ status }) => {
   return <span className={`text-xs font-semibold px-2 py-1 rounded-lg ${s.cls}`}>{s.text}</span>;
 };
 
-const HomeScreen = ({ sets, onSelect, onCreate, onDelete, currentUser, onLogout, onImportSet, onManageUsers, onExport, onExportProgress, onImportProgress, syncStatus }) => {
+const HomeScreen = ({ sets, onSelect, onCreate, onDelete, currentUser, onLogout, onImportSet, onManageUsers, onExport, onExportProgress, onImportProgress, syncStatus, onBack }) => {
   const [q, setQ] = useState('');
   const [showImportSet, setShowImportSet] = useState(false);
   const now = Date.now();
@@ -112,7 +112,7 @@ const HomeScreen = ({ sets, onSelect, onCreate, onDelete, currentUser, onLogout,
 
   return (
     <div className="min-h-screen">
-      <NavBar title={`🎓 Hello, ${currentUser}`} extra={
+      <NavBar title="📚 Từ Vựng" onBack={onBack} extra={
         <div className="flex items-center gap-2">
           
           {/* --- SỬA ĐOẠN NÀY --- */}
@@ -185,4 +185,117 @@ const HomeScreen = ({ sets, onSelect, onCreate, onDelete, currentUser, onLogout,
   );
 };
 
+const DashboardScreen = ({ currentUser, onLogout, onNavigate, syncStatus, onManageUsers, onExport, onImportSet, onCreate, displaySets }) => {
+  const [showImportSet, setShowImportSet] = useState(false);
+  const isAdmin = currentUser === 'admin';
+
+  const modules = [
+    {
+      id: 'vocabulary',
+      icon: '📚',
+      title: 'Học Từ Vựng',
+      description: 'Flashcard, SRS và các bộ từ vựng do admin tạo',
+      gradient: 'from-blue-500 to-indigo-600',
+      stat: displaySets ? `${displaySets.length} bộ từ` : '...'
+    },
+    {
+      id: 'grammar',
+      icon: '📝',
+      title: 'Ngữ Pháp',
+      description: '12 thì tiếng Anh với công thức và ví dụ chi tiết',
+      gradient: 'from-violet-500 to-purple-600',
+      stat: '12 thì'
+    },
+    {
+      id: 'podcast',
+      icon: '🎧',
+      title: 'Luyện Nghe',
+      description: 'Podcast tiếng Anh từ BBC, VOA, TED và nhiều kênh khác',
+      gradient: 'from-green-500 to-emerald-600',
+      stat: '31 kênh podcast'
+    },
+    {
+      id: 'test',
+      icon: '📋',
+      title: 'Bài Kiểm Tra',
+      description: 'Trắc nghiệm ngữ pháp và từ vựng để kiểm tra kiến thức',
+      gradient: 'from-amber-500 to-orange-600',
+      stat: '45 câu hỏi ngữ pháp'
+    }
+  ];
+
+  return (
+    <div className="min-h-screen bg-gray-50 pb-10">
+      <NavBar
+        title="FlashLearn"
+        extra={
+          <div className="flex items-center gap-2">
+            {isAdmin && (
+              <>
+                <button onClick={onManageUsers} className="flex items-center gap-1 bg-gray-700 text-white px-2.5 py-1.5 rounded-xl text-xs font-semibold hover:bg-gray-800">
+                  👥 Tài khoản
+                </button>
+                <button onClick={onExport} className="flex items-center gap-1 bg-orange-500 text-white px-2.5 py-1.5 rounded-xl text-xs font-semibold hover:bg-orange-600">
+                  📤 Xuất DB
+                </button>
+                <button onClick={() => setShowImportSet(true)} className="flex items-center gap-1 bg-green-600 text-white px-2.5 py-1.5 rounded-xl text-xs font-semibold hover:bg-green-700">
+                  📊 Import
+                </button>
+                <button onClick={onCreate} className="flex items-center gap-1 bg-blue-600 text-white px-2.5 py-1.5 rounded-xl text-xs font-semibold hover:bg-blue-700">
+                  + Tạo bộ
+                </button>
+              </>
+            )}
+            {!isAdmin && <SyncBadge status={syncStatus} />}
+            <button onClick={onLogout} className="bg-gray-100 text-gray-600 px-2.5 py-1.5 rounded-xl text-xs font-semibold">Đăng xuất</button>
+          </div>
+        }
+      />
+
+      <div className="max-w-2xl mx-auto px-4 py-6">
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white rounded-3xl p-6 shadow-lg mb-8">
+          <div className="text-sm opacity-80 mb-1">Xin chào 👋</div>
+          <h1 className="text-2xl font-bold">{currentUser}</h1>
+          <p className="text-sm opacity-80 mt-2">Hôm nay bạn muốn học gì?</p>
+        </div>
+
+        <h2 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">Chọn nội dung học</h2>
+        <div className="grid gap-4">
+          {modules.map(m => (
+            <button
+              key={m.id}
+              onClick={() => onNavigate(m.id)}
+              className="w-full text-left bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md hover:border-gray-200 transition-all overflow-hidden"
+            >
+              <div className="px-4 pt-4 pb-3 flex items-center gap-3">
+                <div style={gradientStyle(m.gradient)} className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <span className="text-3xl">{m.icon}</span>
+                </div>
+                <div className="flex-1">
+                  <div className="text-gray-800 font-bold text-base">{m.title}</div>
+                  <div className="text-gray-500 text-xs mt-0.5">{m.stat}</div>
+                </div>
+                <svg className="w-5 h-5 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+              <div className="px-4 pb-3">
+                <p className="text-sm text-gray-500">{m.description}</p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {showImportSet && (
+        <ImportSetModal
+          onClose={() => setShowImportSet(false)}
+          onImport={(name, cards) => { onImportSet(name, cards); setShowImportSet(false); }}
+        />
+      )}
+    </div>
+  );
+};
+
 window.HomeScreen = HomeScreen;
+window.DashboardScreen = DashboardScreen;
