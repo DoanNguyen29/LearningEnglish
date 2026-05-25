@@ -1,4 +1,4 @@
-const GITHUB_TOKEN = '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';
+const GITHUB_TOKEN = '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';
 const GITHUB_OWNER = 'DoanNguyen29';
 const GITHUB_REPO  = 'LearningEnglish';
 const API_BASE     = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents`;
