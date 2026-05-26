@@ -185,6 +185,9 @@ const WriteStudy = ({ set, onBack, onUpdateCard }) => {
   const [known, setKnown] = useState(0);
   const [unk, setUnk] = useState(0);
   const [done, setDone] = useState(false);
+  const inputRef = React.useRef(null);
+
+  React.useEffect(() => { if (!checked && inputRef.current) inputRef.current.focus(); }, [idx, checked]);
 
   const card = pool[idx];
 
@@ -218,7 +221,7 @@ const WriteStudy = ({ set, onBack, onUpdateCard }) => {
           <p className="text-sm text-gray-400 mt-2 italic">Gợi ý: {card.front[0]}... ({card.front.length} ký tự)</p>
         </div>
         <form onSubmit={handleCheck} className="grid gap-3">
-          <input type="text" value={input} disabled={checked} onChange={e => setInput(e.target.value)} placeholder="Nhập từ tiếng Anh tại đây..." className="w-full px-4 py-3 rounded-xl border text-center font-bold text-lg outline-none" autoFocus/>
+          <input ref={inputRef} type="text" value={input} disabled={checked} onChange={e => setInput(e.target.value)} placeholder="Nhập từ tiếng Anh tại đây..." className="w-full px-4 py-3 rounded-xl border text-center font-bold text-lg outline-none"/>
           <Btn full type="submit" disabled={!input.trim() || checked} color={checked ? (isCorrect ? 'green' : 'red') : 'blue'}>
             {checked ? (isCorrect ? 'Chính xác! 🎉' : `Sai rồi ❌ Đáp án là: ${card.front}`) : 'Kiểm tra'}
           </Btn>
