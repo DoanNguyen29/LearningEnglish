@@ -103,9 +103,16 @@ const SyncBadge = ({ status }) => {
 
 const HomeScreen = ({ sets, onSelect, onCreate, onDelete, currentUser, onLogout, onImportSet, onManageUsers, onExport, onExportProgress, onImportProgress, syncStatus, onBack }) => {
   const [q, setQ] = useState('');
+  const [activeCat, setActiveCat] = useState('Tất cả');
   const [showImportSet, setShowImportSet] = useState(false);
   const now = Date.now();
-  const filtered = sets.filter(s => s.name.toLowerCase().includes(q.toLowerCase()) || (s.description || '').toLowerCase().includes(q.toLowerCase()));
+
+  const categories = ['Tất cả', ...Array.from(new Set(sets.map(s => s.category || 'Khác').filter(Boolean)))];
+  const filtered = sets.filter(s => {
+    const matchQ = s.name.toLowerCase().includes(q.toLowerCase()) || (s.description || '').toLowerCase().includes(q.toLowerCase());
+    const matchCat = activeCat === 'Tất cả' || (s.category || 'Khác') === activeCat;
+    return matchQ && matchCat;
+  });
   const total    = sets.reduce((n, s) => n + s.cards.length, 0);
   const known    = sets.reduce((n, s) => n + s.cards.filter(c => c.known).length, 0);
   const dueTotal = sets.reduce((n, s) => n + s.cards.filter(c => c.srsStatus && c.srsStatus !== 'new' && (c.srsNextReview || 0) <= now).length, 0);
@@ -149,7 +156,15 @@ const HomeScreen = ({ sets, onSelect, onCreate, onDelete, currentUser, onLogout,
             </div>
           </div>
         </div>
-        <input type="text" value={q} onChange={e => setQ(e.target.value)} placeholder="Tìm kiếm học phần..." className="w-full px-5 py-3 rounded-2xl bg-white border border-gray-100 shadow-sm text-sm outline-none mb-6" />
+        <input type="text" value={q} onChange={e => setQ(e.target.value)} placeholder="Tìm kiếm học phần..." className="w-full px-5 py-3 rounded-2xl bg-white border border-gray-100 shadow-sm text-sm outline-none mb-3" />
+        <div className="flex gap-2 overflow-x-auto pb-3 mb-3 scrollbar-hide">
+          {categories.map(cat => (
+            <button key={cat} onClick={() => setActiveCat(cat)}
+              className={`flex-shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold transition-all ${activeCat === cat ? 'bg-blue-600 text-white shadow-sm' : 'bg-white text-gray-500 border border-gray-200 hover:border-blue-300'}`}>
+              {cat}
+            </button>
+          ))}
+        </div>
         <div className="grid sm:grid-cols-2 gap-4">
           {filtered.map(set => {
             const k = set.cards.filter(c => c.known).length;
