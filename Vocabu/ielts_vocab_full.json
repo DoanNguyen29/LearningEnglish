@@ -1,0 +1,454 @@
+{
+  "topics": [
+    {
+      "id": "topic_environment",
+      "name": "🌍 Environment",
+      "description": "Từ vựng IELTS chủ đề Môi trường",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "env01", "front": "deforestation", "back": "nạn phá rừng", "example": "Deforestation is destroying large areas of tropical rain forest." },
+        { "id": "env02", "front": "biodiversity", "back": "đa dạng sinh học", "example": "It is crucial to preserve biodiversity for the health of our planet." },
+        { "id": "env03", "front": "global warming", "back": "sự nóng lên toàn cầu", "example": "The destruction of the rainforests is contributing to global warming." },
+        { "id": "env04", "front": "renewable energy", "back": "năng lượng tái tạo", "example": "Investing in renewable energy helps combat climate change." },
+        { "id": "env05", "front": "carbon footprint", "back": "dấu chân carbon", "example": "Flying less is one way to reduce your carbon footprint." },
+        { "id": "env06", "front": "ecosystem", "back": "hệ sinh thái", "example": "Pollution threatens the entire aquatic ecosystem." },
+        { "id": "env07", "front": "conservation", "back": "sự bảo tồn", "example": "Wildlife conservation is a global priority." },
+        { "id": "env08", "front": "pollutant", "back": "chất gây ô nhiễm", "example": "Factories must limit the release of harmful pollutants." },
+        { "id": "env09", "front": "sustainable", "back": "bền vững", "example": "We need sustainable solutions to protect the environment." },
+        { "id": "env10", "front": "eco-friendly", "back": "thân thiện với môi trường", "example": "Using reusable bags is an eco-friendly practice." }
+      ]
+    },
+    {
+      "id": "topic_education",
+      "name": "🎓 Education",
+      "description": "Từ vựng IELTS chủ đề Giáo dục",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "edu01", "front": "curriculum", "back": "chương trình giảng dạy", "example": "The school's curriculum is designed to be comprehensive and flexible." },
+        { "id": "edu02", "front": "extracurricular activities", "back": "hoạt động ngoại khóa", "example": "Participating in extracurricular activities helps students develop soft skills." },
+        { "id": "edu03", "front": "academic achievement", "back": "thành tích học tập", "example": "The school places a strong emphasis on academic achievement." },
+        { "id": "edu04", "front": "distance learning", "back": "học từ xa", "example": "Distance learning has become increasingly popular in recent years." },
+        { "id": "edu05", "front": "tuition fee", "back": "học phí", "example": "Rising tuition fees put financial pressure on many families." },
+        { "id": "edu06", "front": "scholarship", "back": "học bổng", "example": "She won a scholarship to study abroad." },
+        { "id": "edu07", "front": "literacy", "back": "khả năng đọc viết", "example": "Adult literacy programs are essential in developing countries." },
+        { "id": "edu08", "front": "vocational training", "back": "đào tạo nghề", "example": "Vocational training prepares students for specific trades." },
+        { "id": "edu09", "front": "dropout rate", "back": "tỷ lệ bỏ học", "example": "High dropout rates are a concern in many urban schools." },
+        { "id": "edu10", "front": "critical thinking", "back": "tư duy phản biện", "example": "Critical thinking is a valuable skill for the 21st century." }
+      ]
+    },
+    {
+      "id": "topic_technology",
+      "name": "💻 Technology",
+      "description": "Từ vựng IELTS chủ đề Công nghệ",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "tech01", "front": "artificial intelligence", "back": "trí tuệ nhân tạo", "example": "Artificial intelligence is transforming many industries." },
+        { "id": "tech02", "front": "virtual reality", "back": "thực tế ảo", "example": "Virtual reality is used for training simulations." },
+        { "id": "tech03", "front": "automation", "back": "tự động hóa", "example": "Automation has replaced many manual jobs." },
+        { "id": "tech04", "front": "algorithm", "back": "thuật toán", "example": "Social media algorithms personalize your feed." },
+        { "id": "tech05", "front": "cybersecurity", "back": "an ninh mạng", "example": "Strong cybersecurity measures protect against hacking." },
+        { "id": "tech06", "front": "cloud computing", "back": "điện toán đám mây", "example": "Cloud computing allows remote access to files." },
+        { "id": "tech07", "front": "user-friendly", "back": "thân thiện với người dùng", "example": "The app has a simple, user-friendly interface." },
+        { "id": "tech08", "front": "cutting-edge", "back": "tiên tiến nhất", "example": "The company is known for its cutting-edge research." },
+        { "id": "tech09", "front": "obsolete", "back": "lỗi thời", "example": "Old technology quickly becomes obsolete." },
+        { "id": "tech10", "front": "innovation", "back": "sự đổi mới", "example": "Technological innovation has changed our daily lives." }
+      ]
+    },
+    {
+      "id": "topic_health",
+      "name": "🩺 Health",
+      "description": "Từ vựng IELTS chủ đề Sức khỏe",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "hea01", "front": "sedentary lifestyle", "back": "lối sống ít vận động", "example": "A sedentary lifestyle is a major risk factor for many chronic diseases." },
+        { "id": "hea02", "front": "balanced diet", "back": "chế độ ăn cân bằng", "example": "A balanced diet rich in fruits and vegetables is essential for good health." },
+        { "id": "hea03", "front": "well-being", "back": "sự khỏe mạnh", "example": "Regular exercise contributes to overall physical and mental well-being." },
+        { "id": "hea04", "front": "chronic disease", "back": "bệnh mãn tính", "example": "Diabetes is a common chronic disease worldwide." },
+        { "id": "hea05", "front": "obesity", "back": "béo phì", "example": "Obesity rates have been rising in many developed countries." },
+        { "id": "hea06", "front": "immune system", "back": "hệ miễn dịch", "example": "A strong immune system helps fight off infections." },
+        { "id": "hea07", "front": "life expectancy", "back": "tuổi thọ trung bình", "example": "Life expectancy has increased significantly over the past century." },
+        { "id": "hea08", "front": "vaccine", "back": "vắc-xin", "example": "Vaccines have eradicated many deadly diseases." },
+        { "id": "hea09", "front": "side effect", "back": "tác dụng phụ", "example": "The medication may cause side effects such as nausea." },
+        { "id": "hea10", "front": "healthcare system", "back": "hệ thống chăm sóc sức khỏe", "example": "A robust healthcare system is vital for any nation." }
+      ]
+    },
+    {
+      "id": "topic_work",
+      "name": "💼 Work & Career",
+      "description": "Từ vựng IELTS chủ đề Công việc & Nghề nghiệp",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "wor01", "front": "job satisfaction", "back": "sự hài lòng với công việc", "example": "Job satisfaction is often more important than a high salary." },
+        { "id": "wor02", "front": "work-life balance", "back": "cân bằng công việc - cuộc sống", "example": "Achieving a good work-life balance reduces stress." },
+        { "id": "wor03", "front": "career ladder", "back": "bậc thang sự nghiệp", "example": "She quickly climbed the career ladder at her firm." },
+        { "id": "wor04", "front": "flexible hours", "back": "giờ làm linh hoạt", "example": "Flexible hours allow employees to manage personal commitments." },
+        { "id": "wor05", "front": "job security", "back": "an toàn việc làm", "example": "People often prefer government jobs because of job security." },
+        { "id": "wor06", "front": "unemployment rate", "back": "tỷ lệ thất nghiệp", "example": "The unemployment rate dropped after the new policies." },
+        { "id": "wor07", "front": "qualification", "back": "bằng cấp, trình độ", "example": "Relevant qualifications increase your chances of getting hired." },
+        { "id": "wor08", "front": "internship", "back": "thực tập", "example": "An internship provides valuable work experience." },
+        { "id": "wor09", "front": "promotion", "back": "thăng chức", "example": "He worked hard and received a promotion within a year." },
+        { "id": "wor10", "front": "commute", "back": "đi lại hàng ngày", "example": "Her daily commute takes over an hour." }
+      ]
+    },
+    {
+      "id": "topic_travel",
+      "name": "✈️ Travel & Tourism",
+      "description": "Từ vựng IELTS chủ đề Du lịch",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "tra01", "front": "destination", "back": "điểm đến", "example": "Paris is a popular tourist destination." },
+        { "id": "tra02", "front": "ecotourism", "back": "du lịch sinh thái", "example": "Ecotourism aims to minimize environmental impact." },
+        { "id": "tra03", "front": "cultural heritage", "back": "di sản văn hóa", "example": "Preserving cultural heritage is important for future generations." },
+        { "id": "tra04", "front": "backpacker", "back": "khách du lịch ba lô", "example": "Backpackers often stay in hostels to save money." },
+        { "id": "tra05", "front": "itinerary", "back": "lịch trình", "example": "We planned a detailed itinerary for our trip." },
+        { "id": "tra06", "front": "accommodation", "back": "chỗ ở", "example": "The hotel offers comfortable accommodation." },
+        { "id": "tra07", "front": "visa", "back": "thị thực", "example": "You need a visa to enter many countries." },
+        { "id": "tra08", "front": "souvenir", "back": "quà lưu niệm", "example": "I bought a souvenir from the local market." },
+        { "id": "tra09", "front": "off-season", "back": "mùa thấp điểm", "example": "Traveling during off-season can save you money." },
+        { "id": "tra10", "front": "scenic", "back": "đẹp như tranh", "example": "The drive along the coast is incredibly scenic." }
+      ]
+    },
+    {
+      "id": "topic_media",
+      "name": "📱 Media & Communication",
+      "description": "Từ vựng IELTS chủ đề Truyền thông",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "med01", "front": "mass media", "back": "truyền thông đại chúng", "example": "Mass media influences public opinion." },
+        { "id": "med02", "front": "social media", "back": "mạng xã hội", "example": "Social media has changed the way we communicate." },
+        { "id": "med03", "front": "censorship", "back": "kiểm duyệt", "example": "Censorship is a controversial issue in many countries." },
+        { "id": "med04", "front": "fake news", "back": "tin giả", "example": "Fake news can spread rapidly online." },
+        { "id": "med05", "front": "journalist", "back": "nhà báo", "example": "A journalist must report the truth." },
+        { "id": "med06", "front": "bias", "back": "thiên kiến", "example": "Some news outlets show political bias." },
+        { "id": "med07", "front": "clickbait", "back": "tiêu đề câu like", "example": "Clickbait headlines are designed to get attention." },
+        { "id": "med08", "front": "influencer", "back": "người có sức ảnh hưởng", "example": "Many brands collaborate with social media influencers." },
+        { "id": "med09", "front": "viral", "back": "lan truyền nhanh", "example": "The video went viral within hours." },
+        { "id": "med10", "front": "verify", "back": "xác minh", "example": "Always verify information before sharing it." }
+      ]
+    },
+    {
+      "id": "topic_government",
+      "name": "🏛️ Government & Politics",
+      "description": "Từ vựng IELTS chủ đề Chính phủ & Chính trị",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "gov01", "front": "democracy", "back": "dân chủ", "example": "Democracy allows citizens to vote." },
+        { "id": "gov02", "front": "policy", "back": "chính sách", "example": "The government introduced a new economic policy." },
+        { "id": "gov03", "front": "legislation", "back": "luật pháp", "example": "New legislation aims to reduce plastic waste." },
+        { "id": "gov04", "front": "taxation", "back": "thuế khóa", "example": "Taxation funds public services." },
+        { "id": "gov05", "front": "bureaucracy", "back": "bộ máy quan liêu", "example": "Bureaucracy often slows down decision-making." },
+        { "id": "gov06", "front": "corruption", "back": "tham nhũng", "example": "Corruption undermines public trust." },
+        { "id": "gov07", "front": "election", "back": "bầu cử", "example": "The general election will take place next month." },
+        { "id": "gov08", "front": "opposition", "back": "phe đối lập", "example": "The opposition party criticized the new law." },
+        { "id": "gov09", "front": "sanction", "back": "lệnh trừng phạt", "example": "International sanctions were imposed." },
+        { "id": "gov10", "front": "welfare", "back": "phúc lợi", "example": "Welfare programs support the poor." }
+      ]
+    },
+    {
+      "id": "topic_crime",
+      "name": "👮 Society & Crime",
+      "description": "Từ vựng IELTS chủ đề Xã hội & Tội phạm",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "cri01", "front": "juvenile delinquency", "back": "tội phạm vị thành niên", "example": "Juvenile delinquency is often linked to family issues." },
+        { "id": "cri02", "front": "cybercrime", "back": "tội phạm mạng", "example": "Cybercrime is a growing threat." },
+        { "id": "cri03", "front": "rehabilitation", "back": "phục hồi (cải tạo)", "example": "Rehabilitation helps offenders reintegrate." },
+        { "id": "cri04", "front": "recidivism", "back": "tái phạm tội", "example": "High recidivism rates indicate prison system failure." },
+        { "id": "cri05", "front": "deterrence", "back": "sự răn đe", "example": "Harsh punishments act as a deterrent." },
+        { "id": "cri06", "front": "incarceration", "back": "bỏ tù", "example": "Incarceration rates are rising." },
+        { "id": "cri07", "front": "community service", "back": "lao động công ích", "example": "Community service is an alternative to prison." },
+        { "id": "cri08", "front": "discrimination", "back": "phân biệt đối xử", "example": "Discrimination based on race is illegal." },
+        { "id": "cri09", "front": "perpetrator", "back": "thủ phạm", "example": "The perpetrator was arrested quickly." },
+        { "id": "cri10", "front": "witness", "back": "nhân chứng", "example": "A witness testified in court." }
+      ]
+    },
+    {
+      "id": "topic_art",
+      "name": "🎨 Art & Culture",
+      "description": "Từ vựng IELTS chủ đề Nghệ thuật & Văn hóa",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "art01", "front": "contemporary art", "back": "nghệ thuật đương đại", "example": "Contemporary art can be challenging to understand." },
+        { "id": "art02", "front": "heritage", "back": "di sản", "example": "Our heritage includes traditions and monuments." },
+        { "id": "art03", "front": "masterpiece", "back": "kiệt tác", "example": "The Mona Lisa is a masterpiece." },
+        { "id": "art04", "front": "sculpture", "back": "điêu khắc", "example": "He creates sculptures from metal." },
+        { "id": "art05", "front": "performance art", "back": "nghệ thuật trình diễn", "example": "Performance art often involves live action." },
+        { "id": "art06", "front": "aesthetics", "back": "thẩm mỹ học", "example": "Aesthetics is the study of beauty." },
+        { "id": "art07", "front": "indigenous culture", "back": "văn hóa bản địa", "example": "We must respect indigenous cultures." },
+        { "id": "art08", "front": "cultural assimilation", "back": "đồng hóa văn hóa", "example": "Cultural assimilation can erase traditions." },
+        { "id": "art09", "front": "diversity", "back": "sự đa dạng", "example": "Cultural diversity enriches society." },
+        { "id": "art10", "front": "preserve", "back": "bảo tồn", "example": "Efforts to preserve ancient buildings are essential." }
+      ]
+    },
+    {
+      "id": "topic_science",
+      "name": "🔬 Science",
+      "description": "Từ vựng IELTS chủ đề Khoa học",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "sci01", "front": "hypothesis", "back": "giả thuyết", "example": "The experiment tested a hypothesis." },
+        { "id": "sci02", "front": "empirical", "back": "thực nghiệm", "example": "Empirical evidence supports the theory." },
+        { "id": "sci03", "front": "peer review", "back": "bình duyệt đồng cấp", "example": "Peer review ensures research quality." },
+        { "id": "sci04", "front": "laboratory", "back": "phòng thí nghiệm", "example": "They work in a modern laboratory." },
+        { "id": "sci05", "front": "phenomenon", "back": "hiện tượng", "example": "Lightning is a natural phenomenon." },
+        { "id": "sci06", "front": "breakthrough", "back": "đột phá", "example": "A breakthrough in cancer treatment was announced." },
+        { "id": "sci07", "front": "variable", "back": "biến số", "example": "The variable affected the outcome." },
+        { "id": "sci08", "front": "correlation", "back": "sự tương quan", "example": "There is a correlation between diet and health." },
+        { "id": "sci09", "front": "stem cell", "back": "tế bào gốc", "example": "Stem cell research holds promise." },
+        { "id": "sci10", "front": "simulate", "back": "mô phỏng", "example": "Computers can simulate weather patterns." }
+      ]
+    },
+    {
+      "id": "topic_space",
+      "name": "🌌 Space",
+      "description": "Từ vựng IELTS chủ đề Vũ trụ",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "spa01", "front": "astronomy", "back": "thiên văn học", "example": "Astronomy studies celestial objects." },
+        { "id": "spa02", "front": "galaxy", "back": "thiên hà", "example": "The Milky Way is our galaxy." },
+        { "id": "spa03", "front": "black hole", "back": "lỗ đen", "example": "A black hole has strong gravity." },
+        { "id": "spa04", "front": "exoplanet", "back": "hành tinh ngoài hệ mặt trời", "example": "Scientists discovered a new exoplanet." },
+        { "id": "spa05", "front": "asteroid", "back": "tiểu hành tinh", "example": "An asteroid passed near Earth." },
+        { "id": "spa06", "front": "orbit", "back": "quỹ đạo", "example": "Satellites orbit the Earth." },
+        { "id": "spa07", "front": "telescope", "back": "kính thiên văn", "example": "The Hubble telescope captures stunning images." },
+        { "id": "spa08", "front": "space probe", "back": "tàu thăm dò vũ trụ", "example": "A space probe was sent to Mars." },
+        { "id": "spa09", "front": "light-year", "back": "năm ánh sáng", "example": "Stars are millions of light-years away." },
+        { "id": "spa10", "front": "lunar", "back": "thuộc mặt trăng", "example": "The lunar module landed safely." }
+      ]
+    },
+    {
+      "id": "topic_food",
+      "name": "🍽️ Food & Nutrition",
+      "description": "Từ vựng IELTS chủ đề Thực phẩm & Dinh dưỡng",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "foo01", "front": "organic food", "back": "thực phẩm hữu cơ", "example": "Organic food is grown without pesticides." },
+        { "id": "foo02", "front": "genetically modified", "back": "biến đổi gen", "example": "GM crops can increase yields." },
+        { "id": "foo03", "front": "additive", "back": "phụ gia", "example": "Some additives are harmful." },
+        { "id": "foo04", "front": "allergy", "back": "dị ứng", "example": "Nut allergies can be serious." },
+        { "id": "foo05", "front": "vegan", "back": "thuần chay", "example": "She follows a vegan diet." },
+        { "id": "foo06", "front": "calorie", "back": "ca-lo", "example": "Counting calories helps weight management." },
+        { "id": "foo07", "front": "cuisine", "back": "ẩm thực", "example": "Italian cuisine is popular worldwide." },
+        { "id": "foo08", "front": "staple food", "back": "lương thực chính", "example": "Rice is a staple food in Asia." },
+        { "id": "foo09", "front": "food security", "back": "an ninh lương thực", "example": "Food security is a global challenge." },
+        { "id": "foo10", "front": "culinary", "back": "thuộc về nấu ăn", "example": "She has culinary skills." }
+      ]
+    },
+    {
+      "id": "topic_family_relations",
+      "name": "👨‍👩‍👧‍👦 Family & Relationships",
+      "description": "Từ vựng IELTS chủ đề Gia đình & Quan hệ",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "fam01", "front": "nuclear family", "back": "gia đình hạt nhân", "example": "A nuclear family consists of parents and children." },
+        { "id": "fam02", "front": "extended family", "back": "gia đình đa thế hệ", "example": "In many cultures, extended family lives together." },
+        { "id": "fam03", "front": "upbringing", "back": "sự nuôi dạy", "example": "A good upbringing shapes character." },
+        { "id": "fam04", "front": "sibling", "back": "anh chị em ruột", "example": "I have two siblings." },
+        { "id": "fam05", "front": "caregiver", "back": "người chăm sóc", "example": "She is a full-time caregiver for her mother." },
+        { "id": "fam06", "front": "generation gap", "back": "khoảng cách thế hệ", "example": "The generation gap can cause misunderstandings." },
+        { "id": "fam07", "front": "divorce", "back": "ly hôn", "example": "Divorce rates have increased." },
+        { "id": "fam08", "front": "bond", "back": "sự gắn kết", "example": "There is a strong bond between twins." },
+        { "id": "fam09", "front": "nurture", "back": "nuôi dưỡng", "example": "Parents nurture their children." },
+        { "id": "fam10", "front": "breadwinner", "back": "trụ cột kinh tế", "example": "He is the breadwinner of the family." }
+      ]
+    },
+    {
+      "id": "topic_shopping",
+      "name": "🛍️ Shopping & Consumerism",
+      "description": "Từ vựng IELTS chủ đề Mua sắm & Tiêu dùng",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "sho01", "front": "impulse buying", "back": "mua sắm bốc đồng", "example": "Impulse buying leads to overspending." },
+        { "id": "sho02", "front": "brand loyalty", "back": "lòng trung thành với thương hiệu", "example": "Brand loyalty keeps customers returning." },
+        { "id": "sho03", "front": "warranty", "back": "bảo hành", "example": "The product comes with a two-year warranty." },
+        { "id": "sho04", "front": "bargain", "back": "món hời", "example": "This jacket was a real bargain." },
+        { "id": "sho05", "front": "discount", "back": "giảm giá", "example": "They offer a 20% discount." },
+        { "id": "sho06", "front": "materialistic", "back": "nặng về vật chất", "example": "Materialistic values can reduce happiness." },
+        { "id": "sho07", "front": "ethical consumerism", "back": "tiêu dùng có đạo đức", "example": "Ethical consumerism supports fair trade." },
+        { "id": "sho08", "front": "second-hand", "back": "đã qua sử dụng", "example": "Buying second-hand saves money." },
+        { "id": "sho09", "front": "counterfeit", "back": "hàng giả", "example": "Counterfeit goods are illegal." },
+        { "id": "sho10", "front": "money-back guarantee", "back": "bảo đảm hoàn tiền", "example": "The store offers a money-back guarantee." }
+      ]
+    },
+    {
+      "id": "topic_sports",
+      "name": "⚽ Sports",
+      "description": "Từ vựng IELTS chủ đề Thể thao",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "spo01", "front": "endurance", "back": "sức bền", "example": "Marathon running requires endurance." },
+        { "id": "spo02", "front": "stamina", "back": "sức chịu đựng", "example": "Good stamina helps in long matches." },
+        { "id": "spo03", "front": "team spirit", "back": "tinh thần đồng đội", "example": "Team spirit is crucial for success." },
+        { "id": "spo04", "front": "doping", "back": "sử dụng chất kích thích", "example": "Doping is banned in sports." },
+        { "id": "spo05", "front": "amateur", "back": "nghiệp dư", "example": "He is an amateur boxer." },
+        { "id": "spo06", "front": "professional", "back": "chuyên nghiệp", "example": "She turned professional at age 18." },
+        { "id": "spo07", "front": "referee", "back": "trọng tài", "example": "The referee made a controversial call." },
+        { "id": "spo08", "front": "workout", "back": "buổi tập luyện", "example": "A daily workout improves fitness." },
+        { "id": "spo09", "front": "injury", "back": "chấn thương", "example": "He suffered a serious injury." },
+        { "id": "spo10", "front": "recreational", "back": "giải trí", "example": "Recreational sports are fun and healthy." }
+      ]
+    },
+    {
+      "id": "topic_animals",
+      "name": "🐘 Animals",
+      "description": "Từ vựng IELTS chủ đề Động vật",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "ani01", "front": "endangered", "back": "có nguy cơ tuyệt chủng", "example": "Pandas are an endangered species." },
+        { "id": "ani02", "front": "extinct", "back": "tuyệt chủng", "example": "Dinosaurs are extinct." },
+        { "id": "ani03", "front": "habitat", "back": "môi trường sống", "example": "The forest is their natural habitat." },
+        { "id": "ani04", "front": "poaching", "back": "săn trộm", "example": "Poaching threatens rhinos." },
+        { "id": "ani05", "front": "wildlife", "back": "động vật hoang dã", "example": "Wildlife conservation is important." },
+        { "id": "ani06", "front": "domestic", "back": "thuần hóa", "example": "Dogs are domestic animals." },
+        { "id": "ani07", "front": "predator", "back": "động vật ăn thịt", "example": "Lions are apex predators." },
+        { "id": "ani08", "front": "prey", "back": "con mồi", "example": "Zebras are prey for lions." },
+        { "id": "ani09", "front": "migration", "back": "sự di cư", "example": "Bird migration occurs twice a year." },
+        { "id": "ani10", "front": "cruelty", "back": "sự tàn ác", "example": "Animal cruelty is illegal." }
+      ]
+    },
+    {
+      "id": "topic_weather",
+      "name": "🌦️ Weather & Climate",
+      "description": "Từ vựng IELTS chủ đề Thời tiết & Khí hậu",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "wea01", "front": "climate change", "back": "biến đổi khí hậu", "example": "Climate change is causing extreme weather." },
+        { "id": "wea02", "front": "drought", "back": "hạn hán", "example": "The drought affected crops." },
+        { "id": "wea03", "front": "flood", "back": "lũ lụt", "example": "Floods destroyed many homes." },
+        { "id": "wea04", "front": "hurricane", "back": "bão nhiệt đới", "example": "The hurricane caused massive damage." },
+        { "id": "wea05", "front": "humidity", "back": "độ ẩm", "example": "High humidity makes it feel hotter." },
+        { "id": "wea06", "front": "forecast", "back": "dự báo", "example": "The forecast predicts rain tomorrow." },
+        { "id": "wea07", "front": "heatwave", "back": "đợt nắng nóng", "example": "A heatwave gripped the region." },
+        { "id": "wea08", "front": "thunderstorm", "back": "bão có sấm sét", "example": "The thunderstorm knocked out power." },
+        { "id": "wea09", "front": "temperate", "back": "ôn hòa", "example": "Temperate climates have mild winters." },
+        { "id": "wea10", "front": "arid", "back": "khô cằn", "example": "Deserts are arid regions." }
+      ]
+    },
+    {
+      "id": "topic_business",
+      "name": "📈 Business",
+      "description": "Từ vựng IELTS chủ đề Kinh doanh",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "bus01", "front": "entrepreneurship", "back": "tinh thần khởi nghiệp", "example": "Entrepreneurship drives innovation." },
+        { "id": "bus02", "front": "startup", "back": "công ty khởi nghiệp", "example": "The startup raised millions in funding." },
+        { "id": "bus03", "front": "merger", "back": "sáp nhập", "example": "The merger created a giant corporation." },
+        { "id": "bus04", "front": "revenue", "back": "doanh thu", "example": "Company revenue increased by 15%." },
+        { "id": "bus05", "front": "profit margin", "back": "biên lợi nhuận", "example": "They have a high profit margin." },
+        { "id": "bus06", "front": "bankruptcy", "back": "phá sản", "example": "The firm filed for bankruptcy." },
+        { "id": "bus07", "front": "supply chain", "back": "chuỗi cung ứng", "example": "Global supply chains were disrupted." },
+        { "id": "bus08", "front": "market share", "back": "thị phần", "example": "They gained market share quickly." },
+        { "id": "bus09", "front": "monopoly", "back": "độc quyền", "example": "The company has a virtual monopoly." },
+        { "id": "bus10", "front": "franchise", "back": "nhượng quyền", "example": "He bought a fast-food franchise." }
+      ]
+    },
+    {
+      "id": "topic_psychology",
+      "name": "🧠 Psychology",
+      "description": "Từ vựng IELTS chủ đề Tâm lý học",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "psy01", "front": "cognitive", "back": "nhận thức", "example": "Cognitive skills include memory and reasoning." },
+        { "id": "psy02", "front": "perception", "back": "tri giác", "example": "Perception can be influenced by expectations." },
+        { "id": "psy03", "front": "motivation", "back": "động lực", "example": "Motivation drives behavior." },
+        { "id": "psy04", "front": "emotion", "back": "cảm xúc", "example": "Emotions affect decision-making." },
+        { "id": "psy05", "front": "personality", "back": "tính cách", "example": "Personality is shaped by genetics and environment." },
+        { "id": "psy06", "front": "depression", "back": "trầm cảm", "example": "Depression is a serious illness." },
+        { "id": "psy07", "front": "anxiety", "back": "lo âu", "example": "Anxiety can be treated with therapy." },
+        { "id": "psy08", "front": "empathy", "back": "sự đồng cảm", "example": "Empathy helps understand others' feelings." },
+        { "id": "psy09", "front": "resilience", "back": "khả năng phục hồi", "example": "Resilience helps overcome adversity." },
+        { "id": "psy10", "front": "self-esteem", "back": "lòng tự trọng", "example": "Low self-esteem can lead to problems." }
+      ]
+    },
+    {
+      "id": "topic_history",
+      "name": "📜 History",
+      "description": "Từ vựng IELTS chủ đề Lịch sử",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "his01", "front": "civilization", "back": "nền văn minh", "example": "Ancient civilizations like Egypt were advanced." },
+        { "id": "his02", "front": "archaeology", "back": "khảo cổ học", "example": "Archaeology uncovers past societies." },
+        { "id": "his03", "front": "artifact", "back": "hiện vật", "example": "The museum displays artifacts." },
+        { "id": "his04", "front": "dynasty", "back": "triều đại", "example": "The Ming dynasty ruled China." },
+        { "id": "his05", "front": "revolution", "back": "cách mạng", "example": "The industrial revolution changed the world." },
+        { "id": "his06", "front": "empire", "back": "đế chế", "example": "The Roman empire was vast." },
+        { "id": "his07", "front": "colony", "back": "thuộc địa", "example": "Many countries were once colonies." },
+        { "id": "his08", "front": "treaty", "back": "hiệp ước", "example": "The treaty ended the war." },
+        { "id": "his09", "front": "feudal", "back": "phong kiến", "example": "Feudal systems had lords and serfs." },
+        { "id": "his10", "front": "commemorate", "back": "tưởng niệm", "example": "A statue commemorates the event." }
+      ]
+    },
+    {
+      "id": "topic_language",
+      "name": "🗣️ Language",
+      "description": "Từ vựng IELTS chủ đề Ngôn ngữ",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "lan01", "front": "linguistics", "back": "ngôn ngữ học", "example": "Linguistics studies language structure." },
+        { "id": "lan02", "front": "syntax", "back": "cú pháp", "example": "Syntax governs sentence structure." },
+        { "id": "lan03", "front": "semantics", "back": "ngữ nghĩa học", "example": "Semantics deals with meaning." },
+        { "id": "lan04", "front": "dialect", "back": "phương ngữ", "example": "He speaks a local dialect." },
+        { "id": "lan05", "front": "accent", "back": "giọng điệu", "example": "She has a French accent." },
+        { "id": "lan06", "front": "bilingual", "back": "song ngữ", "example": "Being bilingual is an asset." },
+        { "id": "lan07", "front": "mother tongue", "back": "tiếng mẹ đẻ", "example": "His mother tongue is Vietnamese." },
+        { "id": "lan08", "front": "fluency", "back": "sự trôi chảy", "example": "Fluency comes with practice." },
+        { "id": "lan09", "front": "lingua franca", "back": "ngôn ngữ chung", "example": "English is a global lingua franca." },
+        { "id": "lan10", "front": "acquire", "back": "thu nhận (ngôn ngữ)", "example": "Children acquire language naturally." }
+      ]
+    },
+    {
+      "id": "topic_transport",
+      "name": "🚗 Transport",
+      "description": "Từ vựng IELTS chủ đề Giao thông vận tải",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "trn01", "front": "congestion", "back": "ùn tắc", "example": "Traffic congestion is a daily problem." },
+        { "id": "trn02", "front": "infrastructure", "back": "cơ sở hạ tầng", "example": "Road infrastructure needs upgrading." },
+        { "id": "trn03", "front": "mass transit", "back": "giao thông công cộng", "example": "Mass transit reduces car use." },
+        { "id": "trn04", "front": "commuter", "back": "người đi làm hàng ngày", "example": "Commuters face long delays." },
+        { "id": "trn05", "front": "fare", "back": "giá vé", "example": "Bus fares increased." },
+        { "id": "trn06", "front": "hybrid vehicle", "back": "xe lai", "example": "Hybrid vehicles save fuel." },
+        { "id": "trn07", "front": "autonomous vehicle", "back": "xe tự lái", "example": "Autonomous vehicles are being tested." },
+        { "id": "trn08", "front": "rush hour", "back": "giờ cao điểm", "example": "Avoid driving during rush hour." },
+        { "id": "trn09", "front": "emission", "back": "khí thải", "example": "Vehicle emissions pollute the air." },
+        { "id": "trn10", "front": "bicycle-friendly", "back": "thân thiện với xe đạp", "example": "The city is bicycle-friendly." }
+      ]
+    },
+    {
+      "id": "topic_energy",
+      "name": "⚡ Energy",
+      "description": "Từ vựng IELTS chủ đề Năng lượng",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "ene01", "front": "renewable", "back": "tái tạo", "example": "Renewable sources like solar are clean." },
+        { "id": "ene02", "front": "non-renewable", "back": "không tái tạo", "example": "Coal is a non-renewable resource." },
+        { "id": "ene03", "front": "solar power", "back": "năng lượng mặt trời", "example": "Solar power is becoming cheaper." },
+        { "id": "ene04", "front": "wind power", "back": "năng lượng gió", "example": "Wind farms generate electricity." },
+        { "id": "ene05", "front": "hydroelectric", "back": "thủy điện", "example": "Hydroelectric dams provide power." },
+        { "id": "ene06", "front": "geothermal", "back": "địa nhiệt", "example": "Geothermal energy uses Earth's heat." },
+        { "id": "ene07", "front": "nuclear energy", "back": "năng lượng hạt nhân", "example": "Nuclear energy is controversial." },
+        { "id": "ene08", "front": "fossil fuel", "back": "nhiên liệu hóa thạch", "example": "Burning fossil fuels causes pollution." },
+        { "id": "ene09", "front": "energy conservation", "back": "tiết kiệm năng lượng", "example": "Energy conservation reduces bills." },
+        { "id": "ene10", "front": "carbon neutral", "back": "trung hòa carbon", "example": "The company aims to be carbon neutral." }
+      ]
+    },
+    {
+      "id": "topic_urban",
+      "name": "🏙️ Urban & Rural",
+      "description": "Từ vựng IELTS chủ đề Đô thị & Nông thôn",
+      "category": "IELTS chuyên đề",
+      "cards": [
+        { "id": "urb01", "front": "urbanization", "back": "đô thị hóa", "example": "Urbanization is rapid in developing countries." },
+        { "id": "urb02", "front": "rural exodus", "back": "làn sóng di cư khỏi nông thôn", "example": "The rural exodus leaves villages empty." },
+        { "id": "urb03", "front": "slum", "back": "khu ổ chuột", "example": "Slums lack basic services." },
+        { "id": "urb04", "front": "gentrification", "back": "sự phục hưng đô thị", "example": "Gentrification raises property values." },
+        { "id": "urb05", "front": "sprawl", "back": "sự mở rộng", "example": "Urban sprawl consumes farmland." },
+        { "id": "urb06", "front": "megacity", "back": "siêu đô thị", "example": "Tokyo is a megacity." },
+        { "id": "urb07", "front": "quality of life", "back": "chất lượng sống", "example": "Green spaces improve quality of life." },
+        { "id": "urb08", "front": "green belt", "back": "vành đai xanh", "example": "The green belt prevents urban expansion." },
+        { "id": "urb09", "front": "rural", "back": "thuộc nông thôn", "example": "Rural areas are quieter." },
+        { "id": "urb10", "front": "amenities", "back": "tiện nghi", "example": "The neighborhood has many amenities." }
+      ]
+    }
+  ]
+}
