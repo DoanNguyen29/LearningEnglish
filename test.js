@@ -1,5 +1,5 @@
 const { useState, useEffect } = React;
-const { NavBar } = window.UI;
+const { NavBar, gradientStyle } = window.UI;
 
 const GRAMMAR_QUESTIONS = [
   // Present Simple
@@ -285,13 +285,13 @@ const TestHomeScreen = ({ onBack, displaySets, onStartVocabTest }) => {
   if (cat === 'error')   return <ErrorRecognitionScreen onBack={() => setCat(null)} />;
 
   const cats = [
-    { id: 'toeic',   icon: '🏅', label: 'TOEIC',        sub: 'Part 5 · Part 7 · Reading',      from: 'from-orange-500', to: 'to-orange-700' },
-    { id: 'vstep',   icon: '🎓', label: 'VSTEP',         sub: 'Ngữ Pháp · Từ Vựng · Đọc Hiểu', from: 'from-blue-500',   to: 'to-blue-700' },
-    { id: 'ielts',   icon: '🌍', label: 'IELTS',         sub: 'Academic Reading · Grammar',      from: 'from-emerald-500',to: 'to-emerald-700' },
-    { id: 'grammar', icon: '📝', label: 'Ngữ Pháp',      sub: '12 thì · Trắc nghiệm có giải thích', from: 'from-indigo-500', to: 'to-indigo-700' },
-    { id: 'vocab',   icon: '🗂️', label: 'Từ Vựng',       sub: `${displaySets ? displaySets.length : 0} bộ từ · Trắc nghiệm từ thẻ`, from: 'from-green-500', to: 'to-green-700' },
-    { id: 'reading', icon: '📖', label: 'Đọc Hiểu',      sub: 'Email · Thông báo · Bài báo',    from: 'from-cyan-500',   to: 'to-cyan-700' },
-    { id: 'error',   icon: '🔍', label: 'Tìm Lỗi Sai',  sub: 'Phát hiện lỗi ngữ pháp trong câu', from: 'from-purple-500', to: 'to-purple-700' },
+    { id: 'toeic',   icon: '🏅', label: 'TOEIC',       sub: 'Part 5 · Part 7 · Reading',            gradient: 'from-orange-500 to-orange-700' },
+    { id: 'vstep',   icon: '🎓', label: 'VSTEP',        sub: 'Ngữ Pháp · Từ Vựng · Đọc Hiểu',       gradient: 'from-blue-500 to-blue-700' },
+    { id: 'ielts',   icon: '🌍', label: 'IELTS',        sub: 'Academic Reading · Grammar',            gradient: 'from-emerald-500 to-emerald-700' },
+    { id: 'grammar', icon: '📝', label: 'Ngữ Pháp',     sub: '12 thì · Trắc nghiệm có giải thích',   gradient: 'from-indigo-500 to-indigo-700' },
+    { id: 'vocab',   icon: '🗂️', label: 'Từ Vựng',      sub: `${displaySets ? displaySets.length : 0} bộ từ · Trắc nghiệm từ thẻ`, gradient: 'from-green-500 to-green-700' },
+    { id: 'reading', icon: '📖', label: 'Đọc Hiểu',     sub: 'Email · Thông báo · Bài báo',           gradient: 'from-cyan-500 to-cyan-700' },
+    { id: 'error',   icon: '🔍', label: 'Tìm Lỗi Sai', sub: 'Phát hiện lỗi ngữ pháp trong câu',     gradient: 'from-purple-500 to-purple-700' },
   ];
 
   return (
@@ -302,10 +302,12 @@ const TestHomeScreen = ({ onBack, displaySets, onStartVocabTest }) => {
         <div className="grid grid-cols-2 gap-3">
           {cats.map(c => (
             <button key={c.id} onClick={() => setCat(c.id)}
-              className={`text-left bg-gradient-to-br ${c.from} ${c.to} text-white rounded-2xl p-4 shadow-md hover:shadow-lg transition-all`}>
-              <div className="text-3xl mb-2">{c.icon}</div>
-              <div className="font-bold text-base leading-tight">{c.label}</div>
-              <div className="text-xs opacity-80 mt-1 leading-snug">{c.sub}</div>
+              className="text-left bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all p-4">
+              <div style={gradientStyle(c.gradient)} className="w-12 h-12 rounded-2xl flex items-center justify-center mb-3 shadow-sm">
+                <span className="text-2xl">{c.icon}</span>
+              </div>
+              <div className="font-bold text-gray-800 text-sm leading-tight">{c.label}</div>
+              <div className="text-xs text-gray-500 mt-1 leading-snug">{c.sub}</div>
             </button>
           ))}
         </div>
@@ -1072,9 +1074,9 @@ const ToeicHomeScreen = ({ onBack }) => {
     return <ErrorRecognitionScreen onBack={() => setMode('home')} />;
 
   const items = [
-    { id: 'part5-pick', icon: '✏️', label: 'Part 5 – Incomplete Sentences', sub: `Điền từ vào câu · ${TOEIC_PART5.length} câu · Dạng từ, giới từ, từ vựng...`, from: 'from-orange-400', to: 'to-orange-600' },
-    { id: 'part7-pick', icon: '📄', label: 'Part 7 – Reading Comprehension', sub: `${READING_PASSAGES.length} đoạn văn · Email, quảng cáo, bài báo`, from: 'from-amber-400', to: 'to-amber-600' },
-    { id: 'error',       icon: '🔍', label: 'Error Recognition', sub: `${ERROR_QUESTIONS.length} câu · Tìm phần sai trong câu`, from: 'from-red-400', to: 'to-red-600' },
+    { id: 'part5-pick', icon: '✏️', label: 'Part 5 – Incomplete Sentences', sub: `Điền từ vào câu · ${TOEIC_PART5.length} câu · Dạng từ, giới từ, từ vựng...`, gradient: 'from-orange-400 to-orange-600' },
+    { id: 'part7-pick', icon: '📄', label: 'Part 7 – Reading Comprehension', sub: `${READING_PASSAGES.length} đoạn văn · Email, quảng cáo, bài báo`,             gradient: 'from-amber-400 to-amber-600' },
+    { id: 'error',       icon: '🔍', label: 'Error Recognition',              sub: `${ERROR_QUESTIONS.length} câu · Tìm phần sai trong câu`,                      gradient: 'from-red-400 to-red-600' },
   ];
 
   return (
@@ -1082,13 +1084,20 @@ const ToeicHomeScreen = ({ onBack }) => {
       <NavBar title="TOEIC" onBack={onBack} />
       <div className="max-w-2xl mx-auto px-4 py-6">
         <div className="mb-4 px-1 text-xs text-gray-400">Test of English for International Communication – luyện tập theo từng Part</div>
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {items.map(it => (
             <button key={it.id} onClick={() => setMode(it.id)}
-              className={`w-full text-left bg-gradient-to-r ${it.from} ${it.to} text-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-all`}>
-              <div className="text-2xl mb-2">{it.icon}</div>
-              <div className="font-bold text-base">{it.label}</div>
-              <div className="text-xs opacity-85 mt-1">{it.sub}</div>
+              className="w-full text-left bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all p-4 flex items-center gap-4">
+              <div style={gradientStyle(it.gradient)} className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                <span className="text-2xl">{it.icon}</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-gray-800 text-sm">{it.label}</div>
+                <div className="text-xs text-gray-500 mt-0.5">{it.sub}</div>
+              </div>
+              <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+              </svg>
             </button>
           ))}
         </div>
@@ -1115,10 +1124,10 @@ const VstepHomeScreen = ({ onBack }) => {
     return <GrammarCategoryScreen onBack={() => setMode('home')} />;
 
   const items = [
-    { id: 'grammar',  label: 'Ngữ Pháp & Từ Vựng', icon: '📝', sub: `${VSTEP_QUESTIONS.length} câu · Cấu trúc nâng cao, colocation học thuật`, from: 'from-blue-400', to: 'to-blue-600', action: () => { setQs(shuffle(VSTEP_QUESTIONS)); setMode('grammar-test'); } },
-    { id: 'tense',    label: '12 Thì Tiếng Anh',   icon: '⏰', sub: `${GRAMMAR_QUESTIONS.length} câu · Chọn thì hoặc tổng hợp`, from: 'from-indigo-400', to: 'to-indigo-600', action: () => setMode('grammar-tense') },
-    { id: 'reading',  label: 'Đọc Hiểu',            icon: '📖', sub: `${READING_PASSAGES.length} đoạn văn · Email, công văn, bài báo`, from: 'from-sky-400', to: 'to-sky-600', action: () => setMode('reading-pick') },
-    { id: 'error',    label: 'Tìm Lỗi Sai',         icon: '🔍', sub: `${ERROR_QUESTIONS.length} câu · Xác định phần sai trong câu`, from: 'from-violet-400', to: 'to-violet-600', action: () => setMode('error') },
+    { id: 'grammar', label: 'Ngữ Pháp & Từ Vựng', icon: '📝', sub: `${VSTEP_QUESTIONS.length} câu · Cấu trúc nâng cao, colocation học thuật`,  gradient: 'from-blue-400 to-blue-600',   action: () => { setQs(shuffle(VSTEP_QUESTIONS)); setMode('grammar-test'); } },
+    { id: 'tense',   label: '12 Thì Tiếng Anh',   icon: '⏰', sub: `${GRAMMAR_QUESTIONS.length} câu · Chọn thì hoặc tổng hợp`,                   gradient: 'from-indigo-400 to-indigo-600', action: () => setMode('grammar-tense') },
+    { id: 'reading', label: 'Đọc Hiểu',            icon: '📖', sub: `${READING_PASSAGES.length} đoạn văn · Email, công văn, bài báo`,              gradient: 'from-sky-400 to-sky-600',     action: () => setMode('reading-pick') },
+    { id: 'error',   label: 'Tìm Lỗi Sai',         icon: '🔍', sub: `${ERROR_QUESTIONS.length} câu · Xác định phần sai trong câu`,                 gradient: 'from-violet-400 to-violet-600', action: () => setMode('error') },
   ];
 
   if (mode === 'error') return <ErrorRecognitionScreen onBack={() => setMode('home')} />;
@@ -1128,13 +1137,20 @@ const VstepHomeScreen = ({ onBack }) => {
       <NavBar title="VSTEP" onBack={onBack} />
       <div className="max-w-2xl mx-auto px-4 py-6">
         <div className="mb-4 px-1 text-xs text-gray-400">Bài thi Năng lực tiếng Anh Việt Nam – luyện theo từng kỹ năng</div>
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {items.map(it => (
             <button key={it.id} onClick={it.action}
-              className={`w-full text-left bg-gradient-to-r ${it.from} ${it.to} text-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-all`}>
-              <div className="text-2xl mb-2">{it.icon}</div>
-              <div className="font-bold text-base">{it.label}</div>
-              <div className="text-xs opacity-85 mt-1">{it.sub}</div>
+              className="w-full text-left bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all p-4 flex items-center gap-4">
+              <div style={gradientStyle(it.gradient)} className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                <span className="text-2xl">{it.icon}</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-gray-800 text-sm">{it.label}</div>
+                <div className="text-xs text-gray-500 mt-0.5">{it.sub}</div>
+              </div>
+              <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+              </svg>
             </button>
           ))}
         </div>
@@ -1161,10 +1177,10 @@ const IeltsHomeScreen = ({ onBack }) => {
     return <GrammarCategoryScreen onBack={() => setMode('home')} />;
 
   const items = [
-    { id: 'reading-pick', icon: '📚', label: 'Academic Reading',        sub: `${IELTS_PASSAGES.length} đoạn văn học thuật · Tâm lý học, Xã hội học`, from: 'from-emerald-400', to: 'to-emerald-600', action: () => setMode('reading-pick') },
-    { id: 'grammar',      icon: '🧠', label: 'Grammar for IELTS',       sub: `${VSTEP_QUESTIONS.length} câu nâng cao · Đảo ngữ, Subjunctive, So sánh kép`, from: 'from-teal-400', to: 'to-teal-600', action: () => { setQs(shuffle(VSTEP_QUESTIONS)); setMode('grammar-test'); } },
-    { id: 'tense',        icon: '⏰', label: '12 Thì – Ôn Nền Tảng',   sub: `${GRAMMAR_QUESTIONS.length} câu · Nền tảng ngữ pháp cho IELTS`, from: 'from-green-400', to: 'to-green-600', action: () => setMode('grammar-tense') },
-    { id: 'error',        icon: '🔍', label: 'Error Correction',         sub: `${ERROR_QUESTIONS.length} câu · Nhận diện và sửa lỗi ngữ pháp`, from: 'from-lime-500', to: 'to-lime-700', action: () => setMode('error') },
+    { id: 'reading-pick', icon: '📚', label: 'Academic Reading',      sub: `${IELTS_PASSAGES.length} đoạn văn học thuật · Tâm lý học, Xã hội học`,       gradient: 'from-emerald-400 to-emerald-600', action: () => setMode('reading-pick') },
+    { id: 'grammar',      icon: '🧠', label: 'Grammar for IELTS',     sub: `${VSTEP_QUESTIONS.length} câu nâng cao · Đảo ngữ, Subjunctive, So sánh kép`, gradient: 'from-teal-400 to-teal-600',     action: () => { setQs(shuffle(VSTEP_QUESTIONS)); setMode('grammar-test'); } },
+    { id: 'tense',        icon: '⏰', label: '12 Thì – Ôn Nền Tảng', sub: `${GRAMMAR_QUESTIONS.length} câu · Nền tảng ngữ pháp cho IELTS`,               gradient: 'from-green-400 to-green-600',   action: () => setMode('grammar-tense') },
+    { id: 'error',        icon: '🔍', label: 'Error Correction',       sub: `${ERROR_QUESTIONS.length} câu · Nhận diện và sửa lỗi ngữ pháp`,              gradient: 'from-lime-500 to-lime-700',     action: () => setMode('error') },
   ];
 
   if (mode === 'error') return <ErrorRecognitionScreen onBack={() => setMode('home')} />;
@@ -1174,13 +1190,20 @@ const IeltsHomeScreen = ({ onBack }) => {
       <NavBar title="IELTS" onBack={onBack} />
       <div className="max-w-2xl mx-auto px-4 py-6">
         <div className="mb-4 px-1 text-xs text-gray-400">International English Language Testing System – luyện đọc và ngữ pháp học thuật</div>
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {items.map(it => (
             <button key={it.id} onClick={it.action}
-              className={`w-full text-left bg-gradient-to-r ${it.from} ${it.to} text-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-all`}>
-              <div className="text-2xl mb-2">{it.icon}</div>
-              <div className="font-bold text-base">{it.label}</div>
-              <div className="text-xs opacity-85 mt-1">{it.sub}</div>
+              className="w-full text-left bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all p-4 flex items-center gap-4">
+              <div style={gradientStyle(it.gradient)} className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 shadow-sm">
+                <span className="text-2xl">{it.icon}</span>
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="font-bold text-gray-800 text-sm">{it.label}</div>
+                <div className="text-xs text-gray-500 mt-0.5">{it.sub}</div>
+              </div>
+              <svg className="w-4 h-4 text-gray-300 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7"/>
+              </svg>
             </button>
           ))}
         </div>
