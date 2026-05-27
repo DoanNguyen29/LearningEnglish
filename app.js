@@ -9,6 +9,29 @@ const { uid } = window.SRS;
 
 const { useState, useEffect } = React;
 
+const TokenSection = () => {
+  const [tok, setTok] = useState(window.GitHub.getToken());
+  const [saved, setSaved] = useState(false);
+  const handleSave = () => {
+    window.GitHub.setToken(tok.trim());
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  };
+  return (
+    <div className="mb-5 pb-5 border-b">
+      <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">🔑 GitHub Token</p>
+      <div className="flex gap-2">
+        <input type="password" value={tok} onChange={e => { setTok(e.target.value); setSaved(false); }}
+          placeholder="Dán GitHub PAT vào đây..." className="flex-1 px-3 py-2 rounded-xl border text-sm outline-none font-mono"/>
+        <button onClick={handleSave} className={`px-3 py-2 rounded-xl text-sm font-semibold ${saved ? 'bg-green-500 text-white' : 'bg-blue-600 text-white'}`}>
+          {saved ? '✓ Đã lưu' : 'Lưu'}
+        </button>
+      </div>
+      <p className="text-xs text-gray-400 mt-1.5">Token lưu trong trình duyệt, không đưa vào code.</p>
+    </div>
+  );
+};
+
 const UserManagementModal = ({ onClose }) => {
   const [users, setUsers]         = useState([]);
   const [usersSha, setUsersSha]   = useState(null);
@@ -78,6 +101,8 @@ const UserManagementModal = ({ onClose }) => {
     <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 p-4">
       <div className="bg-white w-full max-w-md rounded-2xl p-6">
         <h3 className="font-bold text-lg mb-4">Quản lý tài khoản</h3>
+        <TokenSection />
+
         <div className="mb-5">
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Tài khoản hiện có ({users.length})</p>
           {loading ? (
