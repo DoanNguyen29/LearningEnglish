@@ -64,6 +64,57 @@ async function migrate() {
     }
   }
 
+  // ── 3. Migrate vocabulary sets ───────────────────────────────────────────────
+  const dbFile    = path.join(ROOT, 'database.json');
+  const ieltsFile = path.join(ROOT, 'Vocabu', 'ielts_vocab_full.json');
+
+  let allSets = [];
+
+  if (fs.existsSync(dbFile)) {
+    const sets = JSON.parse(fs.readFileSync(dbFile, 'utf8'));
+    allSets = [...allSets, ...sets];
+    console.log(`\nLoaded ${sets.length} sets from database.json`);
+  } else {
+    console.warn('\ndatabase.json not found, skipping.');
+  }
+
+  if (fs.existsSync(ieltsFile)) {
+    const ielts = JSON.parse(fs.readFileSync(ieltsFile, 'utf8'));
+    const topics = ielts.topics || [];
+    // Chuyển sang cùng format với database.json
+    const ieltsSets = topics.map(t => ({
+      id:          t.id,
+      name:        t.name,
+      description: t.description || 'IELTS Vocabulary',
+      category:    t.category    || 'IELTS',
+      cards:       (t.words || t.cards || []).map(w => ({
+        id:      w.id,
+        front:   w.word   || w.front,
+        back:    w.meaning || w.back,
+        example: w.example || '',
+        known:   false, correct: 0, incorrect: 0
+      }))
+    }));
+    allSets = [...allSets, ...ieltsSets];
+    console.log(`Loaded ${ieltsSets.length} IELTS topics from ielts_vocab_full.json`);
+  } else {
+    console.warn('ielts_vocab_full.json not found, skipping.');
+  }
+
+  if (allSets.length > 0) {
+    const check = await pool.request().query('SELECT COUNT(*) AS cnt FROM sets');
+    if (check.recordset[0].cnt === 0) {
+      await pool.request()
+        .input('data', sql.NVarChar(sql.MAX), JSON.stringify(allSets))
+        .query('INSERT INTO sets (data) VALUES (@data)');
+    } else {
+      await pool.request()
+        .input('data', sql.NVarChar(sql.MAX), JSON.stringify(allSets))
+        .query('UPDATE sets SET data = @data, updated_at = GETDATE() WHERE id = (SELECT MIN(id) FROM sets)');
+    }
+    console.log(`  ✓ ${allSets.length} sets migrated to SQL`);
+  }
+
   console.log('\nMigration complete!');
   process.exit(0);
 }

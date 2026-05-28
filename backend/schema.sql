@@ -18,7 +18,16 @@ CREATE TABLE users (
 );
 GO
 
--- 3. Bảng progress  (data lưu dạng JSON string)
+-- 3. Bảng sets (kho từ vựng dùng chung - lưu toàn bộ mảng JSON)
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'sets')
+CREATE TABLE sets (
+  id         INT IDENTITY(1,1) PRIMARY KEY,
+  data       NVARCHAR(MAX) NOT NULL DEFAULT '[]',
+  updated_at DATETIME DEFAULT GETDATE()
+);
+GO
+
+-- 4. Bảng progress  (data lưu dạng JSON string)
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'progress')
 CREATE TABLE progress (
   id         INT IDENTITY(1,1) PRIMARY KEY,

@@ -176,11 +176,18 @@ const App = () => {
 
   const isAdmin = currentUser === 'admin';
 
-  // Fetch database.json từ GitHub (hoặc cùng thư mục) khi app khởi động
+  // Load kho từ vựng từ SQL Server khi app khởi động
   useEffect(() => {
-    fetch('./database.json?t=' + Date.now())
-      .then(r => r.ok ? r.json() : Promise.reject())
-      .then(data => setSystemSets(data))
+    window.GitHub.getSets()
+      .then(sets => {
+        if (sets && sets.length > 0) {
+          setSystemSets(sets);
+          localStorage.setItem('flashlearn_admin_system_sets', JSON.stringify(sets));
+        } else {
+          const cached = localStorage.getItem('flashlearn_admin_system_sets');
+          setSystemSets(cached ? JSON.parse(cached) : window.SRS.SAMPLE.sets);
+        }
+      })
       .catch(() => {
         const cached = localStorage.getItem('flashlearn_admin_system_sets');
         setSystemSets(cached ? JSON.parse(cached) : window.SRS.SAMPLE.sets);
@@ -192,6 +199,23 @@ const App = () => {
     if (currentUser !== 'admin' || !systemSets || systemSets.length === 0) return;
     setUserData(prev => ({ ...prev, customSets: systemSets }));
   }, [systemSets, currentUser]);
+
+  // Admin: tự động lưu kho từ vựng lên SQL Server khi chỉnh sửa (debounce 3s)
+  useEffect(() => {
+    if (!isAdmin || !userData.customSets) return;
+    if (justLoadedRef.current) return;
+    const timer = setTimeout(() => {
+      const clean = userData.customSets.map(s => ({
+        ...s,
+        cards: s.cards.map(({ srsStatus, srsInterval, srsEase, srsLapses, srsNextReview, ...rest }) => ({
+          ...rest, known: false, correct: 0, incorrect: 0
+        }))
+      }));
+      window.GitHub.saveSets(clean);
+      localStorage.setItem('flashlearn_admin_system_sets', JSON.stringify(clean));
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [userData.customSets]);
 
   // Tự động lưu tiến trình lên server sau mỗi lần userData thay đổi (debounce 4s)
   useEffect(() => {

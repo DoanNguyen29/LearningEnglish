@@ -239,6 +239,44 @@ app.get('/api/admin/stats', requireAuth, async (req, res) => {
   }
 });
 
+// ─── Sets (kho từ vựng dùng chung) ───────────────────────────────────────────
+
+// GET /api/sets  →  public, trả về mảng sets
+app.get('/api/sets', async (req, res) => {
+  try {
+    const pool   = await getPool();
+    const result = await pool.request().query('SELECT TOP 1 data FROM sets ORDER BY id DESC');
+    if (result.recordset.length === 0) return res.json({ sets: [] });
+    res.json({ sets: JSON.parse(result.recordset[0].data) });
+  } catch (err) {
+    console.error('GET /api/sets:', err.message);
+    res.status(500).json({ error: 'db_error' });
+  }
+});
+
+// PUT /api/sets  →  admin lưu toàn bộ kho từ vựng (yêu cầu JWT)
+app.put('/api/sets', requireAuth, async (req, res) => {
+  const { sets } = req.body;
+  if (!Array.isArray(sets)) return res.status(400).json({ error: 'invalid_body' });
+  try {
+    const pool = await getPool();
+    const check = await pool.request().query('SELECT COUNT(*) AS cnt FROM sets');
+    if (check.recordset[0].cnt === 0) {
+      await pool.request()
+        .input('data', sql.NVarChar(sql.MAX), JSON.stringify(sets))
+        .query('INSERT INTO sets (data) VALUES (@data)');
+    } else {
+      await pool.request()
+        .input('data', sql.NVarChar(sql.MAX), JSON.stringify(sets))
+        .query('UPDATE sets SET data = @data, updated_at = GETDATE() WHERE id = (SELECT MIN(id) FROM sets)');
+    }
+    res.json({ ok: true });
+  } catch (err) {
+    console.error('PUT /api/sets:', err.message);
+    res.status(500).json({ error: 'db_error' });
+  }
+});
+
 // ─── Start ────────────────────────────────────────────────────────────────────
 getPool()
   .then(() => app.listen(PORT, () => console.log(`FlashLearn API running on port ${PORT}`)))

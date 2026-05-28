@@ -125,6 +125,29 @@ const saveProgress = async (username, content) => {
   } catch { return null; }
 };
 
+// ─── Sets (kho từ vựng dùng chung) ───────────────────────────────────────────
+
+const getSets = async () => {
+  try {
+    const res = await fetch(`${API_BASE}/sets`);
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.sets || [];
+  } catch { return null; }
+};
+
+const saveSets = async (sets) => {
+  try {
+    const res = await fetch(`${API_BASE}/sets`, {
+      method: 'PUT',
+      headers: authHeader(),
+      body: JSON.stringify({ sets }),
+    });
+    if (res.status === 401) { handle401(); return false; }
+    return res.ok;
+  } catch { return false; }
+};
+
 // ─── Admin ────────────────────────────────────────────────────────────────────
 
 const getAdminStats = async () => {
@@ -145,6 +168,7 @@ window.GitHub = {
   checkStatus, login, setup, logout,
   getUsers, saveUsers,
   getProgress, saveProgress,
+  getSets, saveSets,
   getAdminStats,
   setToken, getToken,
 };
