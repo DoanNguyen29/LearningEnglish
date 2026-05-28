@@ -1,5 +1,5 @@
 // ─── Đổi URL này thành địa chỉ Windows Server của bạn ───────────────────────
-const API_BASE = 'https://inserted-atom-alleged-adding.trycloudflare.com/api';
+const API_BASE = 'https://heart-compatible-fisher-river.trycloudflare.com/api';
 // Ví dụ: const API_BASE = 'http://192.168.1.100:3000/api';
 // ─────────────────────────────────────────────────────────────────────────────
 
