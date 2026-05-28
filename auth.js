@@ -12,37 +12,22 @@ const saveData  = (user, d) => { if (!user) return; try { localStorage.setItem(D
 const AuthScreen = ({ onLoginSuccess }) => {
   const [status, setStatus]       = useState('loading'); // loading | ready | error
   const [statusMsg, setStatusMsg] = useState('');
-  const [users, setUsers]         = useState([]);
-  const [usersSha, setUsersSha]   = useState(null);
+  const [isFirstRun, setIsFirstRun] = useState(false);
   const [username, setUsername]   = useState('');
   const [password, setPassword]   = useState('');
   const [error, setError]         = useState('');
   const [submitting, setSubmitting] = useState(false);
 
-  // Tải danh sách tài khoản từ GitHub khi mở app
+  // Kiểm tra server và trạng thái first-run
   useEffect(() => {
     (async () => {
-      const result = await window.GitHub.getUsers();
-      if (result.error === 'token_invalid') {
-        setStatus('error');
-        setStatusMsg('Token GitHub không hợp lệ hoặc đã hết hạn. Vui lòng cập nhật token trong github.js.');
-        return;
-      }
-      if (result.error === 'network_error') {
-        setStatus('error');
-        setStatusMsg('Không thể kết nối đến GitHub. Kiểm tra kết nối mạng và thử lại.');
-        return;
-      }
+      const result = await window.GitHub.checkStatus();
       if (result.error) {
         setStatus('error');
-        setStatusMsg(`Lỗi khi tải dữ liệu: ${result.error}`);
+        setStatusMsg('Không thể kết nối đến server. Đảm bảo backend đang chạy tại địa chỉ đã cấu hình trong api.js.');
         return;
       }
-      const loaded = result.users || [];
-      setUsers(loaded);
-      setUsersSha(result.sha);
-      // Cache lại localStorage để fallback khi mất mạng
-      if (loaded.length > 0) localStorage.setItem('flashlearn_users', JSON.stringify(loaded));
+      setIsFirstRun(!result.hasUsers);
       setStatus('ready');
     })();
   }, []);
@@ -55,22 +40,23 @@ const AuthScreen = ({ onLoginSuccess }) => {
     const pTrim = password.trim();
     if (!uTrim || !pTrim) { setError('Vui lòng điền đầy đủ thông tin'); setSubmitting(false); return; }
 
-    const isFirstRun = users.length === 0;
-
-    if (!isFirstRun) {
-      // Đăng nhập
-      const found = users.find(x => x.username.toLowerCase() === uTrim.toLowerCase() && x.password === pTrim);
-      if (found) { onLoginSuccess(found.username); }
-      else { setError('Sai tên đăng nhập hoặc mật khẩu'); }
-    } else {
-      // Lần đầu: tạo tài khoản admin, lưu lên GitHub
-      const newUsers = [{ username: uTrim, password: pTrim }];
-      const newSha = await window.GitHub.saveUsers(newUsers, usersSha);
-      if (newSha !== null) {
-        localStorage.setItem('flashlearn_users', JSON.stringify(newUsers));
+    if (isFirstRun) {
+      // Lần đầu: tạo tài khoản admin qua /api/setup
+      const result = await window.GitHub.setup(uTrim, pTrim);
+      if (result.ok) {
         onLoginSuccess(uTrim);
       } else {
-        setError('Không thể lưu tài khoản. Kiểm tra kết nối mạng và thử lại.');
+        setError('Không thể tạo tài khoản. Kiểm tra kết nối server.');
+      }
+    } else {
+      // Đăng nhập qua /api/login → nhận JWT
+      const result = await window.GitHub.login(uTrim, pTrim);
+      if (result.ok) {
+        onLoginSuccess(uTrim);
+      } else if (result.error === 'unauthorized') {
+        setError('Sai tên đăng nhập hoặc mật khẩu');
+      } else {
+        setError('Lỗi kết nối server. Vui lòng thử lại.');
       }
     }
     setSubmitting(false);
@@ -94,6 +80,7 @@ const AuthScreen = ({ onLoginSuccess }) => {
           <div className="text-4xl mb-3">⚠️</div>
           <h2 className="text-lg font-bold text-gray-800 mb-2">Không thể tải dữ liệu</h2>
           <p className="text-sm text-red-600 bg-red-50 rounded-xl p-3 border border-red-100">{statusMsg}</p>
+          <p className="text-xs text-gray-400 mt-2">Đảm bảo backend server đang chạy tại địa chỉ đã cấu hình trong api.js</p>
           <button onClick={() => window.location.reload()} className="mt-6 px-6 py-2.5 bg-blue-600 text-white text-sm font-medium rounded-xl hover:bg-blue-700">
             Thử lại
           </button>
@@ -101,8 +88,6 @@ const AuthScreen = ({ onLoginSuccess }) => {
       </div>
     );
   }
-
-  const isFirstRun = users.length === 0;
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 bg-gradient-to-b from-blue-50 to-indigo-100">
