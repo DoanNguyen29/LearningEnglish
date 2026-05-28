@@ -16,6 +16,7 @@ if (!GITHUB_TOKEN || !GITHUB_OWNER || !GITHUB_REPO) {
 console.log('Starting cloudflared tunnel...');
 const cf = spawn(CLOUDFLARED, ['tunnel', '--url', 'http://localhost:3000'], {
   stdio: ['ignore', 'pipe', 'pipe'],
+  windowsHide: true,
 });
 
 let urlUpdated = false;
